@@ -10,13 +10,16 @@
     <script>
       var fileInput = document.querySelectorAll(".fileInput")[0];
       var addOn = document.querySelectorAll(".addOn")[0];
+      var newOrSaveButton = document.querySelectorAll(".newOrSave")[0];
       
       fileInput.addEventListener('change', function(e) {
         if (this.files.length === 0) {
           console.log('No file selected.');
+          newOrSaveButton.value = "New Add-On";
           return;
         }
-          
+
+        newOrSaveButton.value = "Save Add-On";
         const reader = new FileReader();
         reader.onload = function(e) { /*When the file is read...*/
           console.log("FILE READ--------------------\n" + reader.result); /*Log it.*/
@@ -25,7 +28,11 @@
         reader.readAsText(this.files[0]); /*Read the file.*/
       });
 
-      var saveFile = function() {
+      var saveFileOrMakeNew = function() {
+        if(addOn.innerHTML == "") {
+          newOrSaveButton.value = "Save Add-On";
+          return();
+        }
         var fileToSave = new File([addOn.innerHTML], "Easy Peasy Add-On.html", {
           type: "text/html"
         });
@@ -36,6 +43,8 @@
         URL.revokeObjectURL(downloadURL);        /*Get rid of the URL                          */
         downloadLink.download = fileToSave.name; /*What to name the file.                      */
       }
+
+      newOrSaveButton.addEventListener("click", saveFileOrMakeNew);
     </script>
   </body>
 </html>
