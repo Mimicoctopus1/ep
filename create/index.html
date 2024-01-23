@@ -16,7 +16,7 @@
         if (this.files.length === 0) {
           console.log('No file selected.');
           newOrSaveButton.value = "New Add-On";
-          return;
+          return(0);
         }
 
         newOrSaveButton.value = "Save Add-On";
@@ -31,7 +31,7 @@
       var saveFileOrMakeNew = function() {
         if(addOn.innerHTML == "") {
           newOrSaveButton.value = "Save Add-On";
-          return();
+          return(0);
         }
         var fileToSave = new File([addOn.innerHTML], "Easy Peasy Add-On.html", {
           type: "text/html"
