@@ -44,9 +44,9 @@
         let downloadLink = document.createElement("a");    /*Make a random element that will never be attatched to the DOM*/
         let downloadURL = URL.createObjectURL(fileToSave); /*Make a temporary blob protocol URL to store fileToSave.*/
         downloadLink.href = downloadURL;         /*Use the URL as where to get fileToSave from.*/
+        downloadLink.download = fileToSave.name; /*What to name the file.                      */
         downloadLink.click();                    /*Simulate clicking the URL.                  */
         URL.revokeObjectURL(downloadURL);        /*Get rid of the URL                          */
-        downloadLink.download = fileToSave.name; /*What to name the file.                      */
       }
 
       newOrSaveButton.addEventListener("click", saveFileOrMakeNew);
