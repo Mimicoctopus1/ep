@@ -6,9 +6,10 @@
   <body>
     <input type = "file" class = "fileInput">
     <input class = "newOrSave" type = "button" value = "New Add-On">
+    <div class = "addOn"></div>
     <script>
       var fileInput = document.querySelectorAll(".fileInput")[0];
-      var addOn = document.createElement("div");
+      var addOn = document.querySelectorAll("div");
       fileInput.addEventListener('change', function(e) {
         if (this.files.length === 0) {
           console.log('No file selected.');
@@ -18,7 +19,7 @@
         const reader = new FileReader();
         reader.onload = function(e) { /*When the file is read...*/
           console.log("FILE READ--------------------\n" + reader.result); /*Log it.*/
-          addOn = reader.result;
+          addOn.innerHTML = reader.result; /*Update the file.*/
         };
         reader.readAsText(this.files[0]); /*Read the file.*/
       });
