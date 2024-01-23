@@ -6,7 +6,7 @@
   <body>
     <input type = "file" class = "fileInput">
     <script>
-      var fileInput = document.querySelectorAll("fileInput")[0];
+      var fileInput = document.querySelectorAll(".fileInput")[0];
       fileInput.addEventListener('change', function(e) {
         if (this.files.length === 0) {
           console.log('No file selected.');
