@@ -18,6 +18,7 @@
       var newOrSaveButton = document.querySelectorAll(".newOrSave")[0];
       
       fileInput.addEventListener('change', function(e) {
+        console.log(this.files);
         if (this.files.length === 0) {
           console.log('No file selected.');
           newOrSaveButton.value = "New Add-On";
@@ -35,6 +36,9 @@
 
       var saveFileOrMakeNew = function() {
         if(addOn.innerHTML == "") {
+          /*Make a new, fresh add on file and put it in the input so that the fileInput change event will trigger and change addOn.innerHTML.*/
+          let newAddOnName = prompt("What would you like to name your EP Add-On?", "Awesome Math Skills")
+          fileInput.files = [new File([addOn.innerHTML], newAddOnName, {type: "text/html"})];
           newOrSaveButton.value = "Save Add-On";
           return(0);
         }
