@@ -8,6 +8,11 @@
     <input class = "newOrSave" type = "button" value = "New Add-On">
     <div class = "addOn"></div>
     <script>
+      if(localStorage.currentVersion != document.body) {/*If the original body has changed already (the GitHub Repo has been edited)...*/
+        console.log("NEW VERSION!"); /*Log it.*/
+      }
+      localStorage.currentVersion = document.body;/*Save document.body before it changes.*/
+      
       var fileInput = document.querySelectorAll(".fileInput")[0];
       var addOn = document.querySelectorAll(".addOn")[0];
       var newOrSaveButton = document.querySelectorAll(".newOrSave")[0];
