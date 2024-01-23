@@ -10,6 +10,7 @@
     <script>
       var fileInput = document.querySelectorAll(".fileInput")[0];
       var addOn = document.querySelectorAll(".addOn")[0];
+      
       fileInput.addEventListener('change', function(e) {
         if (this.files.length === 0) {
           console.log('No file selected.');
@@ -23,6 +24,18 @@
         };
         reader.readAsText(this.files[0]); /*Read the file.*/
       });
+
+      var saveFile = function() {
+        var fileToSave = new File([addOn.innerHTML], "Easy Peasy Add-On.html", {
+          type: "text/html"
+        });
+        let downloadLink = document.createElement("a");    /*Make a random element that will never be attatched to the DOM*/
+        let downloadURL = URL.createObjectURL(fileToSave); /*Make a temporary blob protocol URL to store fileToSave.*/
+        downloadLink.href = downloadURL;         /*Use the URL as where to get fileToSave from.*/
+        downloadLink.click();                    /*Simulate clicking the URL.                  */
+        URL.revokeObjectURL(downloadURL);        /*Get rid of the URL                          */
+        downloadLink.download = fileToSave.name; /*What to name the file.                      */
+      }
     </script>
   </body>
 </html>
